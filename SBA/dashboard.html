@@ -1,0 +1,46 @@
+<!-- dashboard.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header><h1>Dashboard</h1></header>
+  <main>
+    <h2 id="roleTitle"></h2>
+    <table id="appointmentsTable">
+      <tr><th>Service</th><th>Date</th><th>Time</th><th>Name</th><th>Phone</th></tr>
+    </table>
+    <button id="deleteBtn" class="hidden">Delete All Appointments</button>
+  </main>
+
+  <script>
+    const user = JSON.parse(localStorage.getItem("currentUser"));
+    if(!user){ window.location.href = "login.html"; }
+
+    document.getElementById("roleTitle").innerText = `Logged in as: ${user.role}`;
+
+    const appointments = JSON.parse(localStorage.getItem("appointments")) || [];
+    const table = document.getElementById("appointmentsTable");
+    appointments.forEach(app => {
+      const row = table.insertRow();
+      row.insertCell(0).innerText = app.service;
+      row.insertCell(1).innerText = app.date;
+      row.insertCell(2).innerText = app.time;
+      row.insertCell(3).innerText = app.name;
+      row.insertCell(4).innerText = app.phone;
+    });
+
+    // RBAC: Only Admin can delete
+    if(user.role === "Admin"){
+      document.getElementById("deleteBtn").classList.remove("hidden");
+      document.getElementById("deleteBtn").addEventListener("click", () => {
+        localStorage.removeItem("appointments");
+        location.reload();
+      });
+    }
+  </script>
+</body>
+</html>

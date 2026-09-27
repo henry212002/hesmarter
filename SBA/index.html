@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Huduma Appointment System</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Huduma Centre Appointment Booking</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="dashboard.html">Admin Dashboard</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="services">
+      <h2>Select Service</h2>
+      <form id="appointmentForm">
+        <label for="service">Service:</label>
+        <select id="service" required>
+          <option value="">--Choose--</option>
+          <option value="ID">National ID</option>
+          <option value="Passport">Passport</option>
+          <option value="Business">Business Registration</option>
+          <option value="Tax">KRA Services</option>
+        </select>
+
+        <label for="date">Date:</label>
+        <input type="date" id="date" required>
+
+        <label for="time">Time:</label>
+        <input type="time" id="time" required>
+
+        <label for="name">Full Name:</label>
+        <input type="text" id="name" required>
+
+        <label for="phone">Phone:</label>
+        <input type="tel" id="phone" required>
+
+        <button type="submit">Book Appointment</button>
+      </form>
+    </section>
+
+    <section id="confirmation" class="hidden">
+      <h2>Appointment Confirmed ✅</h2>
+      <p id="confirmDetails"></p>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Huduma Centre System</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
